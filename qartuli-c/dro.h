@@ -2,8 +2,7 @@
 // Created by Tornike Khintibidze on 22.01.25.
 //
 
-#ifndef DRO_H
-#define DRO_H
+#pragma once
 
 #include <time.h>
 #include "qartuli.h"
@@ -39,5 +38,3 @@ typedef struct tm დრ;
 ჩასმული size_t strftime(სიმბოლო *სტრ, size_t მაქსზომა, კონსტ სიმბოლო *ფორმატი, კონსტ დრ *დროსმმთ) {
     დააბრუნე strftime(სტრ, მაქსზომა, ფორმატი, დროსმმთ);
 }
-
-#endif //DRO_H

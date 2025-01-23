@@ -1,1 +1,0 @@
-#include "stdsheyvana.h"
