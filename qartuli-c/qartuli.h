@@ -24,14 +24,16 @@ typedef size_t ზომა_ტ;
 #define დააბრუნე return
 #define გადაცვლა switch
 #define შემთხვევა case
+#define ნაგულისხმევი default
 #define ქენი do
 #define ვიდრე while
 #define ყოველი for
 #define გამოდი break
 #define გააგრძელე continue
+#define გადახტი goto
 
-#define მისზომა(არგ) sizeof(არგ)
-#define მისმწკრივი(არგ) alignof(არგ)
+#define ამისზომა(არგ) sizeof(არგ)
+#define ამისმწკრივი(არგ) alignof(არგ)
 #define ჩაამწკრივე(არგ) alignas(არგ)
 
 #define მთავარი main

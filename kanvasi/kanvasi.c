@@ -1,117 +1,127 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include "qartuli.h"
+#include "stdsheyvana.h"
+#include "stdbiblioteka.h"
 
-char **canvas;
-int size;
+სტრუქტურა ტილო_ტ {
+    სიმბოლო **გამოსახულება;
+    მთელი ზომა;
+};
 
-void initializeCanvas(int size) {
-    canvas = (char **)malloc(size * sizeof(char *));
-    for (int i = 0; i < size; i++) {
-        canvas[i] = (char *)malloc(size * sizeof(char));
-        for (int j = 0; j < size; j++) {
-            canvas[i][j] = ' ';
+სტრუქტურა ტილო_ტ ტილო;
+
+ბათილი ჩართე_ტილო(მთელი ზომა) {
+    ტილო.ზომა = ზომა;
+    ტილო.გამოსახულება = (სიმბოლო **)malloc(ზომა * ამისზომა(სიმბოლო *));
+    ყოველი (მთელი i = 0; i < ზომა; i++) {
+        ტილო.გამოსახულება[i] = (სიმბოლო *)malloc(ზომა * ამისზომა(სიმბოლო));
+        ყოველი (მთელი j = 0; j < ზომა; j++) {
+            ტილო.გამოსახულება[i][j] = ' ';
         }
     }
 }
 
 
-void displayCanvas(int size) {
-    printf("  ");
-    for (int j = 0; j < size; j++) {
-        printf("%d ", j);
+ბათილი გამოსახე_ტილო(მთელი ზომა) {
+    დაბეჭდეფ("  ");
+    ყოველი (მთელი j = 0; j < ზომა; j++) {
+        დაბეჭდეფ("%d ", j);
     }
-    printf("\n");
+    დაბეჭდეფ("\n");
 
-    for (int i = 0; i < size; i++) {
-        printf("%d|", i);
-        for (int j = 0; j < size; j++) {
-            printf("%c|", canvas[i][j]);
+    ყოველი (მთელი ა = 0; ა < ზომა; ა++) {
+        დაბეჭდეფ("%d|", ა);
+        ყოველი (მთელი ბ = 0; ბ < ზომა; ბ++) {
+            დაბეჭდეფ("%c|", ტილო.გამოსახულება[ა][ბ]);
         }
-        printf("\n");
+        დაბეჭდეფ("\n");
     }
 }
 
 
-void clearCanvas(int size) {
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < size; j++) {
-            canvas[i][j] = ' ';
-        }
-    }
-}
-
-
-void drawOnCanvas(int row, int col, char pen) {
-    if (row >= 0 && row < size && col >= 0 && col < size) {
-        canvas[row][col] = pen;
-    } else {
-        printf("Invalid coordinates! Row and column should be between 0 and %d.\n", size - 1);
-    }
-}
-
-
-void freeCanvas(int size) {
-    for (int i = 0; i < size; i++) {
-        free(canvas[i]);
-    }
-    free(canvas);
-}
-
-int main() {
-    char pen = '*';
-    int row, col;
-    char command;
-
-
-    printf("Enter canvas size (default is 5): ");
-    if (scanf("%d", &size) != 1 || size <= 0) {
-        size = 5;
-        printf("Invalid input. Using default size 5.\n");
-    }
-
-
-    initializeCanvas(size);
-
-
-    while (1) {
-
-        displayCanvas(size);
-
-
-        printf("\nCommands:\n");
-        printf("D <row> <col>: Draw at (row, col)\n");
-        printf("C: Clear the canvas\n");
-        printf("E: Exit the program\n");
-
-
-        printf("Enter command: ");
-        scanf(" %c", &command);
-
-        if (command == 'D' || command == 'd') {
-            printf("Enter row and column: ");
-            if (scanf("%d %d", &row, &col) != 2) {
-                printf("Invalid input! Please enter two integers.\n");
-                while (getchar() != '\n');
-                continue;
-            }
-            printf("Enter a character to draw: ");
-            scanf(" %c", &pen);
-            drawOnCanvas(row, col, pen);
-        } else if (command == 'C' || command == 'c') {
-            clearCanvas(size);
-        } else if (command == 'E' || command == 'e') {
-            break;
-        } else {
-            printf("Invalid command! Try again.\n");
+ბათილი წაშალე_ტილო(მთელი ზომა) {
+    ტილო.ზომა = 0;
+    ყოველი (მთელი ა = 0; ა < ზომა; ა++) {
+        ყოველი (მთელი ბ = 0; ბ < ზომა; ბ++) {
+            ტილო.გამოსახულება[ა][ბ] = ' ';
         }
     }
+}
 
 
-    printf("Final Canvas:\n");
-    displayCanvas(size);
+ბათილი დახატე_კანვასზე(მთელი სტრ, მთელი სვტ, სიმბოლო კალამი) {
+    თუ (სტრ >= 0 && სტრ < ტილო.ზომა && სვტ >= 0 && სვტ < ტილო.ზომა) {
+        ტილო.გამოსახულება[სტრ][სვტ] = კალამი;
+    } ან {
+        დაბეჭდეფ("Invalid coordinates! Row and column should be between 0 and %d.\n", ტილო.ზომა - 1);
+    }
+}
 
 
-    freeCanvas(size);
+ბათილი გადაყრა_ტილოს(მთელი ზომა) {
+    ყოველი (მთელი ა = 0; ა < ზომა; ა++) {
+        გადაყრა(ტილო.გამოსახულება[ა]);
+    }
+    გადაყრა(ტილო.გამოსახულება);
+}
 
-    return 0;
+მთელი მთავარი() {
+    სიმბოლო კალამი = '*';
+    მთელი სტრ, სვტ;
+    სიმბოლო ბრძანება;
+
+    მთელი ზომა = 5;
+
+    დაბეჭდეფ("Enter canvas size (default is 5): ");
+    თუ (დასკანეფ("%d", &ზომა) != 1 || ზომა <= 0) {
+        დაბეჭდეფ("Invalid input. Using default ზომა 5.\n");
+    }
+
+    ჩართე_ტილო(ზომა);
+
+    ვიდრე(1) {
+        გამოსახე_ტილო(ზომა);
+
+        დაბეჭდეფ("\nCommands:\n");
+        დაბეჭდეფ("D <row> <col>: Draw at (row, col)\n");
+        დაბეჭდეფ("C: Clear the canvas\n");
+        დაბეჭდეფ("E: Exit the program\n");
+
+        დაბეჭდეფ("Enter command: ");
+        დასკანეფ(" %c", &ბრძანება);
+
+        გადაცვლა(ბრძანება) {
+            შემთხვევა 'D':
+            შემთხვევა 'd':
+                დაბეჭდეფ("Enter row and column: ");
+                თუ (დასკანეფ("%d %d", &სტრ, &სვტ) != 2) {
+                    დაბეჭდეფ("Invalid input! Please enter two integers.\n");
+                    ვიდრე (მომესიმბ() != '\n');
+                    გააგრძელე;
+                }
+                დაბეჭდეფ("Enter a character to draw: ");
+                დასკანეფ(" %c", &კალამი);
+                დახატე_კანვასზე(სტრ, სვტ, კალამი);
+                გამოდი;
+            შემთხვევა 'C':
+            შემთხვევა 'c':
+                წაშალე_ტილო(ზომა);
+                გამოდი;
+            შემთხვევა 'E':
+            შემთხვევა 'e':
+                გადახტი გამოსავალი;
+                გამოდი;
+            ნაგულისხმევი:
+                დაბეჭდეფ("Invalid command! Try again.\n");
+        }
+    }
+
+გამოსავალი:
+
+    დაბეჭდეფ("Final Canvas:\n");
+    გამოსახე_ტილო(ზომა);
+
+    გადაყრა_ტილოს(ზომა);
+
+    დააბრუნე 0;
 }
