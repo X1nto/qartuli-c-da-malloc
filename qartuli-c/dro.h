@@ -8,14 +8,36 @@
 #include <time.h>
 #include "qartuli.h"
 
-typedef  clock_t
+typedef clock_t საათი_ტ;
+typedef time_t დრო_ტ;
+typedef struct tm დრ;
 
-char *asctime(const struct tm *timeptr);
-clock_t clock(void)
-char *ctime(const time_t *timer)
-double difftime(time_t time1, time_t time2);
-struct tm *localtime(const time_t *timer);
-time_t mktime(struct tm *timeptr);
-size_t strftime(char *str, size_t maxsize, const char *format, const struct tm *timeptr);
+ჩასმული სიმბოლო *როგორცსიდრო(კონსტ დრ *დროსმმთ) {
+    დააბრუნე asctime(დროსმმთ);
+}
+
+ჩასმული საათი_ტ საათი(ბათილი) {
+    დააბრუნე clock();
+}
+
+ჩასმული სიმბოლო *სიდრო(კონსტ დრო_ტ *ტაიმერი) {
+    დააბრუნე ctime(ტაიმერი);
+}
+
+ჩასმული ორმაგი დროთასხვაობა(დრო_ტ დრო1, დრო_ტ დრო2) {
+    დააბრუნე difftime(დრო1, დრო2);
+}
+
+ჩასმული სტრუქტურა tm *ლოკალურიდრო(კონსტ დრო_ტ *ტაიმერი) {
+    დააბრუნე localtime(ტაიმერი);
+}
+
+ჩასმული დრო_ტ გკთდრო(დრ *დროსმმთ) {
+    დააბრუნე mktime(დროსმმთ);
+}
+
+ჩასმული size_t strftime(სიმბოლო *სტრ, size_t მაქსზომა, კონსტ სიმბოლო *ფორმატი, კონსტ დრ *დროსმმთ) {
+    დააბრუნე strftime(სტრ, მაქსზომა, ფორმატი, დროსმმთ);
+}
 
 #endif //DRO_H
